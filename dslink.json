@@ -39,7 +39,7 @@
     },
     "handler_class": {
       "type": "string",
-      "default": "com.example.SimpleFileReadDSLinkHander"
+      "default": "com.example.SimpleFileReadDSLinkHandler"
     }
   }
 }

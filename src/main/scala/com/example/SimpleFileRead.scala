@@ -1,5 +1,5 @@
 /**
- * @license
+ *
  * Copyright (c) 2016,2018 Cisco and/or its affiliates.
  *
  * This software is licensed to you under the terms of the Cisco Sample
@@ -35,35 +35,33 @@ object SimpleFileRead {
     val finishMarker = new SynchronousQueue[Unit]()
 
     val provider = DSLinkFactory.generate(args.drop(1),
-      new SimpleFileReadDSLinkHander(content, () => finishMarker.put(())))
+      new SimpleFileReadDSLinkHandler(content, () => finishMarker.put(())))
 
     provider.start()
     finishMarker.take()
+    Thread.sleep(1000)
     System.exit(0)
   }
 }
 
 
-class SimpleFileReadDSLinkHander(content: String, markFinished: () => Unit) extends DSLinkHandler {
+class SimpleFileReadDSLinkHandler(content: String, markFinished: () => Unit) extends DSLinkHandler {
   private val log = LoggerFactory.getLogger(getClass)
   override val isResponder = true
 
-  override def onResponderInitialized(link: DSLink) = {
-    val superRoot = link.getNodeManager.getSuperRoot
+  override def onResponderInitialized(link: DSLink): Unit = log.info("SimpleFileReadDSLink initialized")
 
-    val node =
-      superRoot
-        .createChild("file")
-        .setDisplayName("File Content")
-        .setValueType(ValueType.STRING)
-        .setValue(new Value(content))
-        .build
-
-    log.info("SimpleFileReadDSLink initialized")
-  }
-
-  override def onResponderConnected(link: DSLink) = {
+  override def onResponderConnected(link: DSLink): Unit = {
     log.info("SimpleFileReadDSLink connected")
+
+    val node = link.getNodeManager.getSuperRoot
+      .createChild("file", true)
+      .setDisplayName("File Content")
+      .setValueType(ValueType.STRING)
+      .setValue(new Value(""))
+      .build
+
+    node.setValue(new Value(content))
 
     markFinished()
   }
