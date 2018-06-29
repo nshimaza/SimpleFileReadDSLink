@@ -49,10 +49,10 @@ class SimpleFileReadDSLinkHandler(content: String, markFinished: () => Unit) ext
   private val log = LoggerFactory.getLogger(getClass)
   override val isResponder = true
 
-  override def onResponderInitialized(link: DSLink): Unit = log.info("SimpleFileReadDSLink initialized")
+  override def onResponderInitialized(link: DSLink): Unit = log.info("SimpleFileRead initialized")
 
   override def onResponderConnected(link: DSLink): Unit = {
-    log.info("SimpleFileReadDSLink connected")
+    log.info("SimpleFileRead connected")
 
     val node = link.getNodeManager.getSuperRoot
       .createChild("file", true)

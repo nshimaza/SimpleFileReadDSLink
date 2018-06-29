@@ -1,7 +1,7 @@
 {
-  "name": "SimpleFileRead",
+  "name": "dslink-scala-simple-file-read",
   "version": "0.0.1",
-  "description": "Simple traffic sinker for performance testing on IOT-DSA",
+  "description": "Create DSLink Node, read a file and set its content to the Node then exit",
   "license": "Cisco Sample Code License",
   "author": {
     "name": "Naoto Shimazaki",
@@ -9,10 +9,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nshimaza/SimpleFileReadDSLink"
+    "url": "https://github.com/nshimaza/dslink-scala-simple-file-read"
   },
   "bugs": {
-    "url": "https://github.com/nshimaza/SimpleFileReadDSLink/issues"
+    "url": "https://github.com/nshimaza/dslink-scala-simple-file-read/issues"
   },
   "configs": {
     "name": {
